@@ -1,0 +1,7 @@
+<div class="center">
+  <button (click)="getRandomIconWithDelay()" [disabled]="isLoading">Получить случайную иконку</button>
+  <div *ngIf="iconToShow" class="icon">
+    <fa-icon [icon]="iconToShow"></fa-icon>
+  </div>
+</div>
+
