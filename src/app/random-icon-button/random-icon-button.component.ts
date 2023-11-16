@@ -12,24 +12,39 @@ export class RandomIconButtonComponent {
   public iconVisible = false;
   private delayInProgress = false;
 
-  getRandomIconWithDelay() {
+  // getRandomIconWithDelay() {
+  //   if (!this.delayInProgress) {
+  //     this.isLoading = true;
+  //     this.iconVisible = false;
+  //     this.delayInProgress = true;
+  //     setTimeout(() => {
+  //       this.generateRandomIcon();
+  //       this.isLoading = false;
+  //       this.iconVisible = true;
+  //       this.delayInProgress = false;
+  //     }, 3000);
+  //   }
+  // }
+
+  async getRandomIconWithDelay() {
     if (!this.delayInProgress) {
       this.isLoading = true;
       this.iconVisible = false;
       this.delayInProgress = true;
-      setTimeout(() => {
-        this.generateRandomIcon();
-        this.isLoading = false;
-        this.iconVisible = true;
-        this.delayInProgress = false;
-      }, 3000);
+      await this.delay(3000);
+      this.generateRandomIcon();
+      this.isLoading = false;
+      this.iconVisible = true;
+      this.delayInProgress = false;
     }
   }
-
   private generateRandomIcon() {
     const allIcons = Object.values(solidIcons);
     const randomIndex = Math.floor(Math.random() * allIcons.length);
     this.iconToShow = allIcons[randomIndex];
+  }
+  private delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
 
